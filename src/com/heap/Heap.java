@@ -2,9 +2,9 @@ package com.heap;
 
 public class Heap {
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+
 		
-		int arrA[] = {3, 2, 1, 7, 8, 4, 10, 16, 12};
+/*		int arrA[] = {3, 2, 1, 7, 8, 4, 10, 16, 12};
 		MinHeap mHeap = new MinHeap(arrA.length);
 		mHeap.arr = arrA;
 		mHeap.createHeap();
@@ -23,6 +23,12 @@ public class Heap {
 		System.out.print("Extract Max :");
 		for(int i=0;i<arrA.length;i++){
 			System.out.print("  " + maxHeap.extractMax());
-		}
+		}*/
+		
+		//Heapsort
+		int arrA[] = {3, 2, 1, 7, 8, 4, 10, 16, 12};
+		HeapSort hs = new HeapSort(arrA);
+		hs.sortAsc();
+		hs.sortDesc();
 	}
 }

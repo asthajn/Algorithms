@@ -9,6 +9,7 @@ public class MaxHeap {
 	public MaxHeap(int size){
 		this.size = size;
 		this.mH = new int [this.size+1];
+		mH[0] = 100;
 	}
 
 	public void createHeap(){
@@ -26,30 +27,37 @@ public class MaxHeap {
 	}
 	
 	public void bubbleUp(){
-		if(mH[p] < mH[p/2] && p/2 > 0){
+/*		if(mH[p] < mH[p/2] && p/2 > 0){
 			swap(p, p/2);
+		}*/
+		int pos = p;
+		while(pos>=0 && mH[pos/2] < mH[pos]){
+			int y = mH[pos];
+			mH[pos]=mH[pos/2];
+			mH[pos/2] = y;
+			pos = pos/2;
 		}
 	}
 	
 	public int extractMax(){
-		int min = mH[1];
-		mH[1]=mH[p-1];
-		mH[p-1]=0;
+		int max = mH[1];
+		mH[1]=mH[p];
+		mH[p]=100;
 		p--;		
 		sinkDown(1);
-		return min;
+		return max;
 	}
 	
 	public void sinkDown(int loc){
-
+		
 			int leftP = 2*loc;
 			int rightP = leftP+1;
 			
 			int largest = loc;
-			if(leftP < p && mH[leftP] > mH[largest]){
+			if(leftP <= p && mH[leftP] > mH[largest]){
 				largest = leftP;
 			}
-			if(rightP < p && mH[rightP] > mH[largest]){
+			if(rightP <= p && mH[rightP] > mH[largest]){
 				largest = rightP;
 			}
 			if(largest != loc){
