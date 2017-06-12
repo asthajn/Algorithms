@@ -32,33 +32,30 @@ public class minHeap {
 	}
 	
 	public int extractMin(){
-		System.out.println("Minimum is: "+mH[1]);
-		int min = mH[p];
-		mH[1] = mH[p];
-		mH[p] = 0;
-		size--;
-		
+		int min = mH[1];
+		mH[1]=mH[p-1];
+		mH[p-1]=0;
+		p--;		
 		sinkDown(1);
 		return min;
 	}
 	
 	public void sinkDown(int loc){
-		if(loc == p){
-			System.out.println("End of heap");
-		}else{
-			int left = 0;
-			int right = 0;
+
 			int leftP = 2*loc;
 			int rightP = leftP+1;
-			if(rightP < p){
-				left = mH[leftP];
-				right = mH[rightP];
-			}			
-			int swapPos = (left < right)?leftP : rightP;
-			swap(loc, swapPos);
-			sinkDown(swapPos);
-		}
-
+			
+			int smallest = loc;
+			if(leftP < p && mH[leftP] < mH[smallest]){
+				smallest = leftP;
+			}
+			if(rightP < p && mH[rightP] < mH[smallest]){
+				smallest = rightP;
+			}
+			if(smallest != loc){
+				swap(loc, smallest);
+				sinkDown(smallest);
+			}
 	}
 	
 	public void swap(int l1, int l2){
