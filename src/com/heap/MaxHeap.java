@@ -1,12 +1,12 @@
 package com.heap;
 
-public class MinHeap {
+public class MaxHeap {
 	
 	private int size;
 	private int p = 1;
 	public int[] arr;
 	private int[] mH;
-	public MinHeap(int size){
+	public MaxHeap(int size){
 		this.size = size;
 		this.mH = new int [this.size+1];
 	}
@@ -31,7 +31,7 @@ public class MinHeap {
 		}
 	}
 	
-	public int extractMin(){
+	public int extractMax(){
 		int min = mH[1];
 		mH[1]=mH[p-1];
 		mH[p-1]=0;
@@ -45,16 +45,16 @@ public class MinHeap {
 			int leftP = 2*loc;
 			int rightP = leftP+1;
 			
-			int smallest = loc;
-			if(leftP < p && mH[leftP] < mH[smallest]){
-				smallest = leftP;
+			int largest = loc;
+			if(leftP < p && mH[leftP] > mH[largest]){
+				largest = leftP;
 			}
-			if(rightP < p && mH[rightP] < mH[smallest]){
-				smallest = rightP;
+			if(rightP < p && mH[rightP] > mH[largest]){
+				largest = rightP;
 			}
-			if(smallest != loc){
-				swap(loc, smallest);
-				sinkDown(smallest);
+			if(largest != loc){
+				swap(loc, largest);
+				sinkDown(largest);
 			}
 	}
 	
@@ -71,7 +71,4 @@ public class MinHeap {
 		}
 		System.out.println();
 	}
-
-
-
 }
